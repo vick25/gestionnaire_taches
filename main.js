@@ -42,3 +42,44 @@ const trierTachesParPriorites = (priorite) => {
 }
 
 console.log(trierTachesParPriorites(1))
+
+const calculerImportance = (tache) => {
+    let importance;
+    const diffenceEnTemps = new Date(tache.dateEcheance) - new Date();
+
+    if (isNaN(diffenceEnTemps)) {
+        throw new Error('La date d’échéance fournie est invalide.');
+    }
+
+    const joursRestants = Math.ceil(diffenceEnTemps / (1000 * 60 * 60 * 24));
+    switch (tache.priorite) {
+        case 1:
+            if (joursRestants <= 2)
+                importance = 'Très urgent';
+            else if (joursRestants > 3 && joursRestants < 6) {
+                importance = 'Urgent';
+            } else {
+                importance = 'Dans le délai';
+            }
+            break;
+        case 2:
+            if (joursRestants <= 2)
+                importance = 'Très urgent';
+            else if (joursRestants > 3 && joursRestants < 6) {
+                importance = 'Urgent';
+            } else {
+                importance = 'Dans le délai';
+            }
+            break;
+        case 3:
+            if (joursRestants <= 2)
+                importance = 'Très urgent';
+            else if (joursRestants > 3 && joursRestants < 6) {
+                importance = 'Urgent';
+            } else {
+                importance = 'Dans le délai';
+            }
+            break;
+    }
+    return importance;
+}
