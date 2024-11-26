@@ -1,7 +1,15 @@
+const taches = [];
+
 const categorieEnum = Object.freeze({
     Travail: "Travail",
     Personnel: "Personnel",
     Urgent: "Urgent"
+});
+
+const prioriteEnum = Object.freeze({
+    Faible: 1,
+    Moyen: 2,
+    Haute: 3
 });
 
 const creerTache = () => {
@@ -24,5 +32,13 @@ const creerTache = () => {
 }
 
 const tache1 = creerTache();
-tache1.defineTache('Tache1', new Date().toLocaleDateString(), "2", true, categorieEnum.Urgent, []);
-console.log(creerTache());
+tache1.defineTache('Tache1', new Date().toLocaleDateString(), prioriteEnum.Haute, true, categorieEnum.Urgent, []);
+taches.push(tache1);
+console.log(taches)
+
+const trierTachesParPriorites = (priorite) => {
+    const tachesTriees = taches.filter(tache => tache.priorite === priorite);
+    return tachesTriees;
+}
+
+console.log(trierTachesParPriorites(1))
