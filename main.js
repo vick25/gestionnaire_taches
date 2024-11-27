@@ -107,3 +107,8 @@ const calculerImportance = (tache) => {
     }
     return importance;
 }
+
+function filtrerTaches(categorie, priorite) {
+    const tachesFiltrees = taches.filter(tache => tache.categorie === categorie && tache.priorite === priorite);
+    return tachesFiltrees;
+}
