@@ -24,6 +24,7 @@ const creerTache = () => {
         priorite: "",
         estTerminee: "",
         categorie: "",
+        _dateCreation: new Date(),
         rappels: [],
         defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
             this.tacheID = tacheID;
@@ -111,4 +112,13 @@ const calculerImportance = (tache) => {
 function filtrerTaches(categorie, priorite) {
     const tachesFiltrees = taches.filter(tache => tache.categorie === categorie && tache.priorite === priorite);
     return tachesFiltrees;
+}
+
+function ajouterRappel(tache, dateRappel) {
+    if (new Date(dateRappel) > new Date(tache.dateEcheance)) {
+        taches.map(t => {
+            return t.tacheID === tache.tacheID ?
+                { ...t, rappels: [] } : tache
+        });
+    }
 }
