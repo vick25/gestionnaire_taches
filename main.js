@@ -1,4 +1,8 @@
-const taches = [];
+const taches = JSON.parse(localStorage.getItem('taches')) || [];
+// Save to LocalStorage
+function saveToLocalStorage(array) {
+    localStorage.setItem('taches', JSON.stringify(array));
+}
 
 const categorieEnum = Object.freeze({
     Travail: "Travail",
@@ -14,13 +18,15 @@ const prioriteEnum = Object.freeze({
 
 const creerTache = () => {
     return {
+        tacheID: "",
         nom: "",
         dateEcheance: null,
         priorite: "",
         estTerminee: "",
         categorie: "",
         rappels: [],
-        defineTache: function (nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
+        defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
+            this.tacheID = tacheID;
             this.nom = nom;
             this.dateEcheance = dateEcheance;
             this.priorite = priorite;
@@ -34,8 +40,26 @@ const creerTache = () => {
 const tache1 = creerTache();
 tache1.defineTache('Tache1', new Date().toLocaleDateString(), prioriteEnum.Haute, true, categorieEnum.Urgent, []);
 taches.push(tache1);
-console.log(taches)
+console.log(taches);
 
+saveToLocalStorage(taches);
+
+const modifierTache = (tacheID, proprietesChangees) => {
+    const tacheModifiee = taches.find(tache => tache.id === tacheID);
+    if (tacheModifiee) {
+        taches.map(tache => {
+            return tache.id === tacheID ? { ...tache, ...proprietesChangees } : tache;
+        });
+        saveToLocalStorage(taches);
+        return true;
+    }
+    return false;
+};
+
+const supprimerTache = (tacheID) => {
+    taches = taches.filter(tache => tache.tacheID !== tacheID);
+    saveToLocalStorage(taches);
+}
 const trierTachesParPriorites = (priorite) => {
     const tachesTriees = taches.filter(tache => tache.priorite === priorite);
     return tachesTriees;
