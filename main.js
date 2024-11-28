@@ -172,3 +172,8 @@ function ajouterRappel(tache, dateRappel) {
         });
     }
 }
+
+const rechercheTache = (query) => {
+    const tachesFiltrees = taches.filter(tache => tache.nom === query || tache.categorie === query);
+    return tachesFiltrees;
+}
