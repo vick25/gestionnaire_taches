@@ -160,11 +160,15 @@ function filtrerTaches(categorie, priorite) {
     return tachesFiltrees;
 }
 
+// Code à revoir car l'explication n'est pas explicite. Les rappels ne sont pas des dates, mais cette fonction recois une dateRappel comme parametres.
 function ajouterRappel(tache, dateRappel) {
     if (new Date(dateRappel) > new Date(tache.dateEcheance)) {
+        if (!Array.isArray(dateRappel)) {
+            dateRappel = [dateRappel];
+        }
         taches.map(t => {
             return t.tacheID === tache.tacheID ?
-                { ...t, rappels: [] } : tache
+                { ...t, rappels: [dateRappel] } : tache
         });
     }
 }
