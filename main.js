@@ -18,6 +18,22 @@ const prioriteEnum = Object.freeze({
     Haute: 3
 });
 
+function convertToMilliSeconds(valeur) {
+    const nombre = parseInt(valeur.slice(0, -1), 10);
+    const unite = valeur.slice(-1);
+
+    switch (unite) {
+        case 'm': // minutes
+            return nombre * 60 * 1000;
+        case 'h': // heures
+            return nombre * 60 * 60 * 1000;
+        case 'j': // jours
+            return nombre * 24 * 60 * 60 * 1000;
+        default:
+            alert(`Unité non valide, veuillez utiliser 'm' pour minutes, 'h' pour heures et 'j' for jours`);
+    }
+}
+
 const creerObjetTache = () => {
     return {
         tacheID: "",
@@ -27,7 +43,6 @@ const creerObjetTache = () => {
         estTerminee: "",
         categorie: "",
         _dateCreation: new Date(),
-        rappels: [],
         defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
             this.tacheID = tacheID;
             this.nom = nom;
@@ -36,6 +51,32 @@ const creerObjetTache = () => {
             this.estTerminee = estTerminee;
             this.categorie = categorie;
             this.rappels = rappels;
+        },
+        rappels: [],
+        defineRappels: function (valeur, type = "m") {
+            if (!isNaN(valeur))
+                this.rappels.push(`${valeur}${type}`)
+        },
+        _sortRappels: function sortRappels() {
+            return this.rappels.sort((a, b) => {
+                return convertToMilliSeconds(a) - convertToMilliSeconds(b);
+            });
+        },
+        getRappels: function () {
+            return this._sortRappels;
+        },
+        defineNotifications: function () {
+            if (this.getRappels().length > 0) {
+                const tempsRappel = convertToMilliSeconds(this.getRappels().shift());
+                const tempsEcheance = new Date(this.dateEcheance).getTime();
+
+                const tempsNotification = tempsEcheance - tempsRappel;
+                const interval = tempsNotification - new Date().now();
+
+                setTimeout(() => {
+                    alert(`Notification : Rappel pour exécuter la tâche.`);
+                }, interval);
+            }
         }
     }
 }
