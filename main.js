@@ -77,6 +77,18 @@ const creerObjetTache = () => {
                     alert(`Notification : Rappel pour exécuter la tâche.`);
                 }, interval);
             }
+        },
+        tempsRestant: function () {
+            const maintenant = new Date();
+            const echeance = new Date(this.dateEcheance);
+            if (echeance < maintenant) {
+                return "L'échéance est déjà passée.";
+            }
+
+            const differenceEcheance = echeance - maintenant;
+            const min = 60 * 1000, heure = 60 * min, jour = 24 * heure;
+
+            return `${Math.floor(differenceEcheance / jour)} jours, ${Math.floor((differenceEcheance % jour) / heure)} heures, ${Math.floor((differenceEcheance % heure) / min)} minutes`;
         }
     }
 }
