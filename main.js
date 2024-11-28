@@ -118,7 +118,7 @@ const supprimerTache = (tacheID) => {
     taches = taches.filter(tache => tache.tacheID !== tacheID);
     saveToLocalStorage(taches);
 }
-const trierTachesParPriorites = (priorite) => {
+const trierTachesParPriorites = () => {
     const tachesTriees = taches.sort((a, b) => a.priorite - b.priorite);
     // const tachesTriees = taches.filter(tache => tache.priorite === priorite);
     return tachesTriees;
