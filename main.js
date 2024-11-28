@@ -119,7 +119,7 @@ const supprimerTache = (tacheID) => {
     saveToLocalStorage(taches);
 }
 const trierTachesParPriorites = (priorite) => {
-    const tachesTriees = taches.sort((a, b) => a.id - b.id);
+    const tachesTriees = taches.sort((a, b) => a.priorite - b.priorite);
     // const tachesTriees = taches.filter(tache => tache.priorite === priorite);
     return tachesTriees;
 }
