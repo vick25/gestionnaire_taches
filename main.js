@@ -47,6 +47,9 @@ const creerObjetTache = () => {
         getDateCreation: function () {
             return this._dateCreation;
         },
+        setDateCreation: function (dateCreation) {
+            this._dateCreation = dateCreation;
+        },
         defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
             this.tacheID = tacheID;
             this.nom = nom;
@@ -99,9 +102,8 @@ const creerObjetTache = () => {
 const creerTache = (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) => {
     const tache = creerObjetTache();
     tache.defineTache(tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels);
-    // tache.defineTache('Tache1', new Date().toLocaleDateString(), prioriteEnum.Haute, true, categorieEnum.Urgent, []);
     taches.push(tache);
-    // console.log(taches);
+
     saveToLocalStorage(taches);
 }
 

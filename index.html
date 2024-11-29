@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./components.js" defer></script>
     <script src="./main.js" defer></script>
+    <script src="./pagination.js" defer></script>
     <script src="./index.js" defer></script>
 </head>
 
 <body>
     <header>
-        <button id="creerTache" type="button">Créer Tâche</>
+        <button id="creerTache" type="button" class="btn-primary">Créer Tâche</>
     </header>
     <main class="main">
         <section class="main_action">
@@ -29,9 +30,9 @@
                 <div>
                     <label>Priorité</label>
                     <select name="priorité" id="priorité">
-                        <option value="faible">Faible</option>
-                        <option value="moyenne">Moyenne</option>
-                        <option value="haute">Haute</option>
+                        <option value="Faible">Faible</option>
+                        <option value="Moyenne">Moyenne</option>
+                        <option value="Haute">Haute</option>
                     </select>
                 </div>
                 <div>
@@ -56,14 +57,14 @@
                 </fieldset>
 
                 <div>
-                    <button type="submit" id="ajouterTache">Ajouter</button>
-                    <button type="button" id="annulerTache">Annuler</button>
+                    <button type="submit" id="ajouterTache" class="btn-success">Ajouter</button>
+                    <button type="button" id="annulerTache" class="btn-danger">Annuler</button>
                 </div>
             </form>
         </section>
 
         <section class="main_list">
-            <h1>... Pas de tâches disponibles !!!</h1>
+            <p>... Pas de tâches disponibles !!!</p>
             <ul class="taches_list">
             </ul>
         </section>
