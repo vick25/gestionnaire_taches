@@ -7,7 +7,6 @@
     <title>Gestionnaire des Tâches</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./components.js" defer></script>
-    <script src="./utils.js" defer></script>
     <script src="./main.js" defer></script>
     <script src="./index.js" defer></script>
 </head>
@@ -18,10 +17,10 @@
     </header>
     <main class="main">
         <section class="main_action">
-            <form>
+            <form action="#">
                 <div>
                     <label for="tacheNom">Tâche</label>
-                    <input type="text" id="tacheNom" name="tacheNom" />
+                    <input type="text" id="tacheNom" name="tacheNom" required />
                 </div>
                 <div>
                     <label for="dateEcheance">Date d'écheance</label>
@@ -37,34 +36,36 @@
                 </div>
                 <div>
                     <label for="categorie">Catégorie</label>
-                    <input type="text" id="categorie" name="categorie" />
+                    <input type="text" id="categorie" name="categorie" required />
                 </div>
 
                 <fieldset>
                     <legend>Rappels:</legend>
                     <div>
                         <label for="rappel">Rappel:</label>
-                        <input type="number" id="rappel" name="rappel">
+                        <input type="number" id="rappel" name="rappel" required>
                     </div>
                     <div>
                         <input type="radio" id="m" name="rappels" value="m" checked>
-                        <label for="html">Minute</label>
+                        <label for="m">Minute</label>
                         <input type="radio" id="h" name="rappels" value="h">
-                        <label for="css">Heure</label>
+                        <label for="h">Heure</label>
                         <input type="radio" id="j" name="rappels" value="j">
-                        <label for="javascript">Jour</label>
+                        <label for="j">Jour</label>
                     </div>
                 </fieldset>
 
                 <div>
-                    <button type="button" id="ajouterTache">Ajouter</button>
+                    <button type="submit" id="ajouterTache">Ajouter</button>
                     <button type="button" id="annulerTache">Annuler</button>
                 </div>
             </form>
         </section>
 
         <section class="main_list">
-            <ul class="taches_list"></ul>
+            <h1>... Pas de tâches disponibles !!!</h1>
+            <ul class="taches_list">
+            </ul>
         </section>
     </main>
 </body>

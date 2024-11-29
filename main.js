@@ -40,9 +40,10 @@ const creerObjetTache = () => {
         nom: "",
         dateEcheance: null,
         priorite: "",
-        estTerminee: "",
+        estTerminee: false,
         categorie: "",
         _dateCreation: new Date(),
+        rappels: [],
         getDateCreation: function () {
             return this._dateCreation;
         },
@@ -53,9 +54,8 @@ const creerObjetTache = () => {
             this.priorite = priorite;
             this.estTerminee = estTerminee;
             this.categorie = categorie;
-            this.rappels = rappels;
+            this.rappels.push(rappels);
         },
-        rappels: [],
         defineRappels: function (valeur, type = "m") {
             if (!isNaN(valeur))
                 this.rappels.push(`${valeur}${type}`)
