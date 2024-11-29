@@ -1,6 +1,6 @@
 'use strict';
 
-const taches = JSON.parse(localStorage.getItem('taches')) || [];
+let taches = JSON.parse(localStorage.getItem('taches')) || [];
 // Save to LocalStorage
 function saveToLocalStorage(array) {
     localStorage.setItem('taches', JSON.stringify(array));
@@ -108,10 +108,10 @@ const creerTache = (tacheID, nom, dateEcheance, priorite, estTerminee, categorie
 }
 
 const modifierTache = (tacheID, proprietesChangees) => {
-    const tacheModifiee = taches.find(tache => tache.id === tacheID);
+    const tacheModifiee = taches.find(tache => tache.tacheID === tacheID);
     if (tacheModifiee) {
-        taches.map(tache => {
-            return tache.id === tacheID ? { ...tache, ...proprietesChangees } : tache;
+        taches = taches.map(tache => {
+            return tache.tacheID === tacheID ? { ...tache, ...proprietesChangees } : tache;
         });
         saveToLocalStorage(taches);
         return true;

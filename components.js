@@ -9,10 +9,12 @@ const TacheCardComponent = (tache) => {
                 <p><b>Echéance</b> : ${tache.dateEcheance}</p>
             </div>
             <div class="taches__item__footer">
-                ${!tache.estTerminee && '<button>Modifier</button>'}
-                <button type="button">Supprimer</button>
-                <button type="button">Compléter</button>
+                ${!tache.estTerminee && '<button type="button" id="modifierTache" class="btn-warning">Modifier</button>'}
+                <button type="button" id="supprimerTache" class="btn-danger">Supprimer</button>
+                <button type="button" id="completerTache" class="btn-success" ${tache.estTerminee ? 'disabled' : ''}>Compléter</button>
             </div>
         </div>
     </li>`
 };
+
+// <button type="button" id="supprimerTache" class="btn-danger" onclick="${supprimerTache(tache.tacheID)}">Supprimer</button>

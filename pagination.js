@@ -23,21 +23,23 @@ const renderPagination = () => {
 
     return `
     <div>
-        <ul>
-                ${pagination.map((tache) => `<li>${tache}</li>`).join("")}
-            </ul>
+        <ul class="taches_list">
+            ${pagination.map((tache) => `<li>${tache}</li>`).join("")}
+        </ul>
 
-        <button
-            disabled=${!aPrec}
-            onclick="handleChangePage('prec')"
-        >
-            Précédent
-        </button>
-        <button
-            disabled=${!aSuiv}
-            onclick="handleChangePage('suiv')"
-        >
-            Suivant
-        </button>
+        div>
+            <button
+                disabled=${!aPrec}
+                onclick="handleChangePage('prec')"
+            >
+                Précédent
+            </button>
+            <button
+                disabled=${!aSuiv}
+                onclick="handleChangePage('suiv')"
+            >
+                Suivant
+            </button>
+        </div>
     </div>`;
 }
