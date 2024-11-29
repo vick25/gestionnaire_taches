@@ -14,7 +14,7 @@ const categorieEnum = Object.freeze({
 
 const prioriteEnum = Object.freeze({
     Faible: 1,
-    Moyen: 2,
+    Moyenne: 2,
     Haute: 3
 });
 
@@ -43,6 +43,9 @@ const creerObjetTache = () => {
         estTerminee: "",
         categorie: "",
         _dateCreation: new Date(),
+        getDateCreation: function () {
+            return this._dateCreation;
+        },
         defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
             this.tacheID = tacheID;
             this.nom = nom;
@@ -196,7 +199,7 @@ function genererRapport() {
     const nbreTachesTerminees = taches.reduce((acc, currentValue) => {
         return currentValue.estTerminee ? acc + 1 : 0;
     }, 0);
-    const { '1': Faible, '2': Moyen, '3': Haute } = taches.reduce((acc, currentValue) => {
+    const { '1': Faible, '2': Moyenne, '3': Haute } = taches.reduce((acc, currentValue) => {
         const { priorite } = currentValue
         acc[priorite] = (acc[priorite] || 0) + 1;
         return acc;
@@ -205,6 +208,6 @@ function genererRapport() {
     return `Il y a un nombre total de ${nbreTaches} tâches.
             Un nombre de ${nbreTachesTerminees} tâches sont terminiées.
             En termes de priorités: ${Faible ? Faible + ' tâches ont la priorité faible. ' : ''}
-                    ${Moyen ? Moyen + ' tâches ont la priorité moyenne. ' : ''}
+                    ${Moyenne ? Moyenne + ' tâches ont la priorité moyenne. ' : ''}
                     ${Haute ? Haute + ' tâches ont la priorité haute. ' : ''}`;
 }
