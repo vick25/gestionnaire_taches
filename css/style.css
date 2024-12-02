@@ -7,9 +7,11 @@
 }
 
 body {
+  font-family: "Open Sans", sans-serif;
   padding: 2em;
   display: grid;
-  gap: 1em;
+  gap: 1.5em;
+  color: #333;
 }
 
 button:disabled {
@@ -22,22 +24,23 @@ button:disabled {
 
 .btn-primary {
   background-color: #0b5ed7;
-  color: #c2d1e7;
+  color: #f0f4f9;
+  font-weight: bold;
 }
 
 .btn-success {
   background-color: #157347;
-  color: #bee6d3;
+  color: #fafafa;
 }
 
 .btn-danger {
   background-color: #bb2d3b;
-  color: #d8bfc1;
+  color: #fdfcfc;
 }
 
 .btn-warning {
   background-color: #ffca2c;
-  color: #efe6d2;
+  color: #231f10;
 }
 
 .text-decoration-line-through {
@@ -74,7 +77,7 @@ button {
   padding: 5px 10px;
   border: none;
   border-radius: 3px;
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
 }
 
@@ -138,6 +141,13 @@ select {
   padding: 0.75em;
   border-radius: 10px;
   gap: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.taches__item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .taches__item-wrapper {
@@ -164,6 +174,18 @@ select {
   display: flex;
   justify-content: center;
   gap: 1em;
+}
+
+footer {
+  padding: 2em;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  & p {
+    text-align: center;
+  }
+}
+
+.text-small {
+  font-size: 0.8rem;
 }
 
 @media screen and (min-width: 650px) {
