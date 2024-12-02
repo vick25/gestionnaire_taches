@@ -31,6 +31,7 @@ function convertToMilliSeconds(valeur) {
             return nombre * 24 * 60 * 60 * 1000;
         default:
             alert(`Unité non valide, veuillez utiliser 'm' pour minutes, 'h' pour heures et 'j' for jours`);
+            return 0;
     }
 }
 
@@ -50,37 +51,36 @@ const creerObjetTache = () => {
         setDateCreation: function (dateCreation) {
             this._dateCreation = dateCreation;
         },
-        defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) {
+        defineTache: function (tacheID, nom, dateEcheance, priorite, estTerminee, categorie) {
             this.tacheID = tacheID;
             this.nom = nom;
             this.dateEcheance = dateEcheance;
             this.priorite = priorite;
             this.estTerminee = estTerminee;
             this.categorie = categorie;
-            this.rappels.push(rappels);
+            // this.rappels.push(rappels);
         },
-        defineRappels: function (valeur, type = "m") {
-            if (!isNaN(valeur))
-                this.rappels.push(`${valeur}${type}`)
+        defineRappels: function (valeurs) {
+            this.rappels.push(...valeurs);
         },
         _sortRappels: function sortRappels() {
-            return this.rappels.sort((a, b) => {
-                return convertToMilliSeconds(a) - convertToMilliSeconds(b);
-            });
+            return this.rappels.sort((a, b) => convertToMilliSeconds(a) - convertToMilliSeconds(b));
         },
         getRappels: function () {
-            return this._sortRappels;
+            return this._sortRappels();
         },
         defineNotifications: function () {
-            if (this.getRappels().length > 0) {
+            if (this.getRappels().length > 0 && !this.estTerminee) {
+                // console.log(this)
                 const tempsRappel = convertToMilliSeconds(this.getRappels().shift());
                 const tempsEcheance = new Date(this.dateEcheance).getTime();
 
                 const tempsNotification = tempsEcheance - tempsRappel;
-                const interval = tempsNotification - new Date().now();
+                const interval = tempsNotification - new Date().getTime();
+                // console.log(interval)
 
                 setTimeout(() => {
-                    alert(`Notification : Rappel pour exécuter la tâche.`);
+                    alert(`Notification : Rappel pour exécuter la tâche ${this.nom} dans cette date ${this.dateEcheance} d'écheance.`);
                 }, interval);
             }
         },
@@ -101,7 +101,8 @@ const creerObjetTache = () => {
 
 const creerTache = (tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels) => {
     const tache = creerObjetTache();
-    tache.defineTache(tacheID, nom, dateEcheance, priorite, estTerminee, categorie, rappels);
+    tache.defineTache(tacheID, nom, dateEcheance, priorite, estTerminee, categorie);
+    tache.defineRappels(rappels);
     taches.push(tache);
 
     saveToLocalStorage(taches);

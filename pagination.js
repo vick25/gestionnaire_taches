@@ -1,17 +1,17 @@
 const itemsPerPage = 10;
 let page = 1;
 
-const renderPagination = () => {
+const renderPagination = (taches) => {
     const countTache = taches.length;
     const aPrec = itemsPerPage * (page - 1) > 0;
     const aSuiv = itemsPerPage * (page - 1) + itemsPerPage < countTache;
 
     const handleChangePage = (action) => {
         action === "prec" ? page-- : page++;
-        renderPagination();
+        renderPagination(taches);
     };
 
-    const pagination = taches.slice(
+    const paginationTaches = taches.slice(
         (page - 1) * itemsPerPage,
         page * itemsPerPage
     );
@@ -20,26 +20,30 @@ const renderPagination = () => {
     document.querySelector("button[onclick*=prec]")?.addEventListener("click", () => handleChangePage("prec"));
     document.querySelector("button[onclick*=suiv]")?.addEventListener("click", () => handleChangePage("suiv"));
 
-
     return `
-    <div>
-        <ul class="taches_list">
-            ${pagination.map((tache) => `<li>${tache}</li>`).join("")}
-        </ul>
+    <ul class="taches_list">
+        ${paginationTaches.map(({ tacheID, nom, dateEcheance, categorie, priorite, estTerminee, rappels, _dateCreation }) => {
+        const tacheObj = creerObjetTache();
+        tacheObj.defineTache(tacheID, nom, dateEcheance, priorite, estTerminee, categorie);
+        tacheObj.setDateCreation(_dateCreation);
+        tacheObj.defineRappels(rappels);
+        tacheObj.defineNotifications();
 
-        div>
-            <button
-                disabled=${!aPrec}
-                onclick="handleChangePage('prec')"
-            >
-                Précédent
-            </button>
-            <button
-                disabled=${!aSuiv}
-                onclick="handleChangePage('suiv')"
-            >
-                Suivant
-            </button>
-        </div>
-    </div>`;
+        return TacheCardComponent(tacheObj);
+    }).join('')}
+    </ul>
+    <div class="paginationButtons">
+        <button
+            disabled=${!aPrec}
+            onclick="handleChangePage('prec')"
+        >
+            Précédent
+        </button>
+        <button
+            disabled=${!aSuiv}
+            onclick="handleChangePage('suiv')"
+        >
+            Suivant
+        </button>
+    </div>`
 }

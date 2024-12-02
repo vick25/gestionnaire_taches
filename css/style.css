@@ -113,7 +113,11 @@ select {
 }
 
 .main_list {
-  height: calc(100vh - 130px);
+  /* height: calc(100vh - 130px); */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  justify-items: center;
 }
 
 .main_list > p {
@@ -153,6 +157,13 @@ select {
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.paginationButtons {
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  gap: 1em;
 }
 
 @media screen and (min-width: 650px) {
