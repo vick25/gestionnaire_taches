@@ -30,7 +30,7 @@ function convertToMilliSeconds(valeur) {
         case 'j': // jours
             return nombre * 24 * 60 * 60 * 1000;
         default:
-            alert(`Unité non valide, veuillez utiliser 'm' pour minutes, 'h' pour heures et 'j' for jours`);
+            alert(`Unité non valide, veuillez utiliser 'm' pour minutes, 'h' pour heures et 'j' pour jours`);
             return 0;
     }
 }
@@ -128,6 +128,10 @@ const trierTachesParPriorites = () => {
     const tachesTriees = taches.sort((a, b) => a.priorite - b.priorite);
     // const tachesTriees = taches.filter(tache => tache.priorite === priorite);
     return tachesTriees;
+}
+const findTache = (tacheID) => {
+    const tache = taches.find(tache => tache.tacheID === parseInt(tacheID));
+    return tache;
 }
 
 // console.log(trierTachesParPriorites(1))

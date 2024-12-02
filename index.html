@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionnaire des Tâches</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./utils.js"></script>
     <script src="./components.js" defer></script>
     <script src="./main.js" defer></script>
     <script src="./pagination.js" defer></script>
@@ -24,34 +25,34 @@
                     <input type="text" id="tacheNom" name="tacheNom" required />
                 </div>
                 <div>
-                    <label for="dateEcheance">Date d'écheance</label>
-                    <input type="date" id="dateEcheance" name="dateEcheance" />
+                    <label for="tacheDateEcheance">Date d'écheance</label>
+                    <input type="date" id="tacheDateEcheance" name="tacheDateEcheance" />
                 </div>
                 <div>
                     <label>Priorité</label>
-                    <select name="priorité" id="priorité">
+                    <select name="tachePriorite" id="tachePriorite">
                         <option value="Faible">Faible</option>
                         <option value="Moyenne">Moyenne</option>
                         <option value="Haute">Haute</option>
                     </select>
                 </div>
                 <div>
-                    <label for="categorie">Catégorie</label>
-                    <input type="text" id="categorie" name="categorie" required />
+                    <label for="tacheCategorie">Catégorie</label>
+                    <input type="text" id="tacheCategorie" name="tacheCategorie" required />
                 </div>
 
                 <fieldset>
                     <legend>Rappels:</legend>
                     <div>
-                        <label for="rappel">Rappel:</label>
-                        <input type="number" id="rappel" name="rappel" required>
+                        <label for="tacheRappel">Rappel:</label>
+                        <input type="number" id="tacheRappel" name="tacheRappel" required>
                     </div>
                     <div>
-                        <input type="radio" id="m" name="rappels" value="m" checked>
+                        <input type="radio" id="m" name="tacheRappels" value="m" checked>
                         <label for="m">Minute</label>
-                        <input type="radio" id="h" name="rappels" value="h">
+                        <input type="radio" id="h" name="tacheRappels" value="h">
                         <label for="h">Heure</label>
-                        <input type="radio" id="j" name="rappels" value="j">
+                        <input type="radio" id="j" name="tacheRappels" value="j">
                         <label for="j">Jour</label>
                     </div>
                 </fieldset>

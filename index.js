@@ -7,7 +7,8 @@ const p = document.querySelector("section.main_list > p");
 const mainListSection = document.querySelector("section.main_list");
 const tachesList = document.querySelector("section.main_list > ul");
 
-let isTacheAjouteeState = false;
+let isTacheAjouteeState = false,
+    typeAction = 'create', editTacheID = -1;
 
 // Window loading
 window.addEventListener('DOMContentLoaded', () => {
@@ -50,10 +51,36 @@ function handleTacheEvents() {
                 isTacheAjouteeState = true;
         })
     );
+
+    btnModifierTacheList.forEach(btnModifier => btnModifier.addEventListener('click',
+        function () {
+            editTacheID = this.closest('.taches__item').getAttribute('key');
+            if (editTacheID) {
+                typeAction = 'modify';
+                createTacheSection.style.display = "block";
+                btnAjouterTache.textContent = 'Modifier';
+
+                const { nom, categorie, priorite, dateEcheance, rappels } = findTache(editTacheID);
+                tacheNom.value = nom;
+                tacheDateEcheance.value = dateEcheance;
+                tachePriorite.value = priorite;
+                tacheCategorie.value = categorie;
+                const rappelsTaches = rappels[0];
+                tacheRappel.value = rappelsTaches.slice(0, -1);
+                const radioButton = document.querySelector(`input[name="tacheRappels"][value="${rappelsTaches.slice(-1)}"]`);
+                if (radioButton) {
+                    radioButton.checked = true;
+                }
+                // const isModifiee = modifierTache(parseInt(tacheID), { estTerminee: true });
+                // if (isModifiee)
+                //     isTacheAjouteeState = true;
+            }
+        })
+    );
 }
 
 function renderTaches() {
-    console.log("Rendering taches...");
+    // console.log("Rendering taches...");
     if (taches.length > 0) {
         p.style.display = 'none';
         try {
@@ -73,20 +100,24 @@ function renderTaches() {
 // Events
 btnCreerTache.addEventListener("click", () => {
     form.reset();
+    typeAction = 'create';
     createTacheSection.style.display = "block";
+    btnAjouterTache.textContent = 'Ajouter';
 });
 
 btnAnnulerTache.addEventListener("click", () => {
+    typeAction = 'create';
     createTacheSection.style.display = "none";
 });
 
 btnAjouterTache.addEventListener("click", (e) => {
     e.preventDefault();
-    const tacheID = taches.length == 0 ? taches.length + 1 : parseInt(taches[taches.length - 1].tacheID) + 1;
-    const selectedRappel = document.querySelector('input[name="rappels"]:checked').value;
-    const tempsRappel = [`${rappel.value}${selectedRappel}`];
+    const tacheID = taches.length == 0 ? taches.length + 1 :
+        parseInt(taches[taches.length - 1].tacheID) + 1;
+    const selectedRappel = document.querySelector('input[name="tacheRappels"]:checked').value;
+    const tempsRappel = [`${tacheRappel.value}${selectedRappel}`];
 
-    if (new Date(dateEcheance.value).getTime() < new Date().getTime()) {
+    if (new Date(tacheDateEcheance.value).getTime() < new Date().getTime()) {
         alert(`La date d'échéance n'est pas valide`);
         isTacheAjouteeState = false;
         return;
@@ -94,6 +125,17 @@ btnAjouterTache.addEventListener("click", (e) => {
 
     createTacheSection.style.display = "none";
 
-    creerTache(tacheID, tacheNom.value, dateEcheance.value, priorité.value, false, categorie.value, tempsRappel);
+    if (typeAction === 'create') {
+        creerTache(tacheID, tacheNom.value, tacheDateEcheance.value, tachePriorite.value, false, tacheCategorie.value, tempsRappel);
+    } else {
+        const isModifiee = modifierTache(parseInt(editTacheID), {
+            nom: tacheNom.value,
+            dateEcheance: tacheDateEcheance.value,
+            priorite: tachePriorite.value,
+            estTerminee: false,
+            categorie: tacheCategorie.value,
+            rappels: tempsRappel
+        });
+    }
     isTacheAjouteeState = true;
 });
