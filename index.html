@@ -19,14 +19,14 @@
 
 <body>
     <header>
-        <button id="creerTache" type="button" class="btn-primary">Créer Tâche</>
+        <button id="triggerTacheForm" type="button" class="btn-primary btn-active">Créer Tâche</>
     </header>
     <main class="main">
         <section class="main_action">
             <form action="#">
                 <div>
                     <label for="tacheNom">Tâche</label>
-                    <input type="text" id="tacheNom" name="tacheNom" required />
+                    <input type="text" id="tacheNom" name="tacheNom" placeholder="Saisir la tâche" required />
                 </div>
                 <div>
                     <label for="tacheDateEcheance">Date d'écheance</label>
@@ -42,14 +42,16 @@
                 </div>
                 <div>
                     <label for="tacheCategorie">Catégorie</label>
-                    <input type="text" id="tacheCategorie" name="tacheCategorie" required />
+                    <input type="text" id="tacheCategorie" name="tacheCategorie" placeholder="Saisir la categorie"
+                        required />
                 </div>
 
                 <fieldset>
                     <legend>Rappels</legend>
                     <div>
                         <label for="tacheRappel">Rappel :</label>
-                        <input type="number" id="tacheRappel" name="tacheRappel" required>
+                        <input type="number" id="tacheRappel" name="tacheRappel" placeholder="Saisir un nombre"
+                            required>
                     </div>
                     <div>
                         <input type="radio" id="m" name="tacheRappels" value="m" checked>

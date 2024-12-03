@@ -22,6 +22,12 @@ button:disabled {
   border: 1px solid #999999;
 }
 
+label,
+legend {
+  /* font-size: 0.8rem; */
+  font-weight: 600;
+}
+
 .btn-primary {
   background-color: #0b5ed7;
   color: #f0f4f9;
@@ -41,6 +47,12 @@ button:disabled {
 .btn-warning {
   background-color: #ffca2c;
   color: #231f10;
+}
+
+.btn-active:active {
+  transform: scale(0.8);
+  transition: 0.3s all;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 .text-decoration-line-through {
@@ -155,7 +167,7 @@ select {
   display: grid;
   gap: 1em;
 
-  & .taches__item_head {
+  & .taches__item__body {
     display: grid;
     gap: 0.5em;
   }
