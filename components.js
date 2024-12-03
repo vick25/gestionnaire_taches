@@ -1,6 +1,5 @@
 const TacheCardComponent = (tache) => {
-    return `<li key=${tache.tacheID} class="taches__item">
-        <div class="taches__item-wrapper">
+    return `<li key=${tache.tacheID} class="taches__item taches__item-wrapper">
             <div class=${tache.estTerminee ? "text-decoration-line-through taches__item__body" : "taches__item__body"}>
                 <h3>${tache.nom}</h3>
                 <p><b>Catégorie</b> : ${tache.categorie}</p>
@@ -13,8 +12,7 @@ const TacheCardComponent = (tache) => {
                 <button type="button" id="supprimerTache" class="btn-danger">Supprimer</button>
                 <button type="button" id="completerTache" class="btn-success" ${tache.estTerminee ? 'disabled' : ''}>Compléter</button>
             </div>
-        </div>
     </li>`
 };
 
-// <button type="button" id="supprimerTache" class="btn-danger" onclick="${supprimerTache(tache.tacheID)}">Supprimer</button>
+// <button type="button" id="supprimerTache" class="btn-danger" onclick=`supprimerTache(${tache.tacheID})`>Supprimer</button>
