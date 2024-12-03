@@ -25,6 +25,7 @@ function handleTacheEvents() {
             supprimerTache(parseInt(tacheID));
             renderTaches();
         }
+        renderTaches();
     }));
 
     btnCompleterTacheList.forEach(btnCompleter => btnCompleter.addEventListener('click',
