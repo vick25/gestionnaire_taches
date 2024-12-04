@@ -25,7 +25,6 @@ function handleTacheEvents() {
             supprimerTache(parseInt(tacheID));
             renderTaches();
         }
-        renderTaches();
     }));
 
     btnCompleterTacheList.forEach(btnCompleter => btnCompleter.addEventListener('click',
@@ -64,24 +63,24 @@ function handleTacheEvents() {
 }
 
 function renderTaches() {
-    const p = document.querySelector("section.main_list > p");
+    const paragrahpPasTaches = document.querySelector("section.main_list > p");
     // console.log("Rendering taches...");
     if (taches.length > 0) {
-        if (p)
-            p.style.display = 'none';
+        if (paragrahpPasTaches)
+            paragrahpPasTaches.style.display = 'none';
         try {
             //Affiche la pagination
             mainListSection.innerHTML = renderPagination(taches);
 
             handleTacheEvents();
         } catch (error) {
-            if (p)
-                p.style.display = 'block';
+            if (paragrahpPasTaches)
+                paragrahpPasTaches.style.display = 'block';
             console.error(error);
         }
     } else {
-        if (p)
-            p.style.display = 'block';
+        if (paragrahpPasTaches)
+            paragrahpPasTaches.style.display = 'block';
     }
 }
 

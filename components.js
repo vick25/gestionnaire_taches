@@ -15,4 +15,4 @@ const TacheCardComponent = (tache) => {
     </li>`
 };
 
-// <button type="button" id="supprimerTache" class="btn-danger" onclick="${supprimerTache(tache.tacheID)}">Supprimer</button>
+// <button type="button" id="supprimerTache" class="btn-danger" onclick=`supprimerTache(${tache.tacheID})`>Supprimer</button>
