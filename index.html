@@ -4,12 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestionnaire des Tâches</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <script src="./utils.js"></script>
+    <script src="./components.js" defer></script>
     <script src="./main.js" defer></script>
+    <script src="./pagination.js" defer></script>
+    <script src="./index.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <button id="triggerTacheForm" type="button" class="btn-primary btn-active">Créer Tâche</>
+    </header>
+    <main class="main">
+        <section class="main_action">
+            <form action="#">
+                <div>
+                    <label for="tacheNom">Tâche</label>
+                    <input type="text" id="tacheNom" name="tacheNom" placeholder="Saisir la tâche" required />
+                </div>
+                <div>
+                    <label for="tacheDateEcheance">Date d'écheance</label>
+                    <input type="date" id="tacheDateEcheance" name="tacheDateEcheance" />
+                </div>
+                <div>
+                    <label>Priorité</label>
+                    <select name="tachePriorite" id="tachePriorite">
+                        <option value="Faible">Faible</option>
+                        <option value="Moyenne">Moyenne</option>
+                        <option value="Haute">Haute</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="tacheCategorie">Catégorie</label>
+                    <input type="text" id="tacheCategorie" name="tacheCategorie" placeholder="Saisir la categorie"
+                        required />
+                </div>
 
+                <fieldset>
+                    <legend>Rappels</legend>
+                    <div>
+                        <label for="tacheRappel">Rappel :</label>
+                        <input type="number" id="tacheRappel" name="tacheRappel" placeholder="Saisir un nombre"
+                            required>
+                    </div>
+                    <div>
+                        <input type="radio" id="m" name="tacheRappels" value="m" checked>
+                        <label for="m">Minute</label>
+                        <input type="radio" id="h" name="tacheRappels" value="h">
+                        <label for="h">Heure</label>
+                        <input type="radio" id="j" name="tacheRappels" value="j">
+                        <label for="j">Jour</label>
+                    </div>
+                </fieldset>
+
+                <div>
+                    <button type="submit" id="ajouterTache" class="btn-success">Ajouter</button>
+                    <button type="button" id="annulerTache" class="btn-danger">Annuler</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="main_list">
+            <p>... Pas de tâches disponibles !!!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p class="text-small">&copy; 2024 - Victor Kadiata.</p>
+    </footer>
 </body>
 
 </html>
